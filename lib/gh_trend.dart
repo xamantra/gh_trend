@@ -6,6 +6,7 @@ export 'src/index.dart'
         GhTrendDateRange,
         ghDateRangeLabel,
         ghTrendingRepositories,
+        ghTrendingDevelopers,
         GithubRepoItem,
         GithubUserItem,
         GithubDeveloperItem,
