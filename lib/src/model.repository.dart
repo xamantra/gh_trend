@@ -10,6 +10,7 @@ class GithubRepoItem extends Equatable {
     required this.repoName,
     required this.description,
     required this.programmingLanguage,
+    this.programmingLanguageColor,
     required this.totalStars,
     required this.starsSince,
     required this.totalForks,
@@ -27,6 +28,9 @@ class GithubRepoItem extends Equatable {
 
   /// The primary programming language of this repository. Some have *unknown* language.
   final String programmingLanguage;
+
+  /// The primary programming language color. Some have *unknown* language or unknown colors..
+  final String? programmingLanguageColor;
 
   /// Total number of stars of this repository.
   final int totalStars;
@@ -47,6 +51,7 @@ class GithubRepoItem extends Equatable {
       'repoName': repoName,
       'description': description,
       'programmingLanguage': programmingLanguage,
+      'programmingLanguageColor': programmingLanguageColor,
       'totalStars': totalStars,
       'starsSince': starsSince,
       'totalForks': totalForks,
@@ -61,6 +66,7 @@ class GithubRepoItem extends Equatable {
       repoName: json['repoName'],
       description: json['description'],
       programmingLanguage: json['programmingLanguage'],
+      programmingLanguageColor: json['programmingLanguageColor'],
       totalStars: json['totalStars'],
       starsSince: json['starsSince'],
       totalForks: json['totalForks'],
@@ -83,6 +89,7 @@ class GithubRepoItem extends Equatable {
         repoName,
         description,
         programmingLanguage,
+        programmingLanguageColor,
         totalStars,
         starsSince,
         totalForks,

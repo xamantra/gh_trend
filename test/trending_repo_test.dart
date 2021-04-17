@@ -31,7 +31,8 @@ void main() {
   });
 
   test('monthly', () async {
-    var result = await ghTrendingRepositories(dateRange: GhTrendDateRange.thisMonth);
+    var result =
+        await ghTrendingRepositories(dateRange: GhTrendDateRange.thisMonth);
     expect(result.isNotEmpty, true);
     for (var item in result) {
       _checkItem(item, dateRangeMustBe: 'stars this month');
@@ -39,7 +40,8 @@ void main() {
   });
 
   test('weekly', () async {
-    var result = await ghTrendingRepositories(dateRange: GhTrendDateRange.thisWeek);
+    var result =
+        await ghTrendingRepositories(dateRange: GhTrendDateRange.thisWeek);
     expect(result.isNotEmpty, true);
     for (var item in result) {
       _checkItem(item, dateRangeMustBe: 'stars this week');
@@ -47,10 +49,14 @@ void main() {
   });
 
   test('weekly javascript', () async {
-    var result = await ghTrendingRepositories(dateRange: GhTrendDateRange.thisWeek, programmingLanguage: 'javascript');
+    var result = await ghTrendingRepositories(
+        dateRange: GhTrendDateRange.thisWeek,
+        programmingLanguage: 'javascript');
     expect(result.isNotEmpty, true);
     for (var item in result) {
-      _checkItem(item, programmingLanguageMustBe: 'javascript', dateRangeMustBe: 'stars this week');
+      _checkItem(item,
+          programmingLanguageMustBe: 'javascript',
+          dateRangeMustBe: 'stars this week');
     }
   });
 }
@@ -64,7 +70,12 @@ void _checkItem(
     expect(item.owner.isNotEmpty, true);
     expect(item.repoName.isNotEmpty, true);
     if (programmingLanguageMustBe.isNotEmpty) {
-      expect(item.programmingLanguage.toLowerCase(), programmingLanguageMustBe.toLowerCase());
+      expect(item.programmingLanguage.toLowerCase(),
+          programmingLanguageMustBe.toLowerCase());
+    }
+    if (item.programmingLanguage.isNotEmpty &&
+        item.programmingLanguageColor != null) {
+      expect(item.programmingLanguageColor!.isNotEmpty, true);
     }
     expect(item.starsSince.isNotEmpty, true);
     expect(item.starsSince.contains(dateRangeMustBe), true);

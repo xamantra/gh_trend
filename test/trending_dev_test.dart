@@ -19,7 +19,8 @@ void main() {
   });
 
   test('trending developers - html - weekly', () async {
-    var result = await ghTrendingDevelopers(programmingLanguage: 'html', dateRange: GhTrendDateRange.thisWeek);
+    var result = await ghTrendingDevelopers(
+        programmingLanguage: 'html', dateRange: GhTrendDateRange.thisWeek);
     expect(result.isNotEmpty, true);
     for (var dev in result) {
       _checkDev(dev);
@@ -27,7 +28,8 @@ void main() {
   });
 
   test('trending developers - html - monthly', () async {
-    var result = await ghTrendingDevelopers(programmingLanguage: 'html', dateRange: GhTrendDateRange.thisMonth);
+    var result = await ghTrendingDevelopers(
+        programmingLanguage: 'html', dateRange: GhTrendDateRange.thisMonth);
     expect(result.isNotEmpty, true);
     for (var dev in result) {
       _checkDev(dev);

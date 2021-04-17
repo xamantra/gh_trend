@@ -105,6 +105,8 @@ class GithubTrendScraper {
               item.querySelector(descriptionSelector)?.text.trim() ?? '';
           var programmingLanguage =
               item.querySelector('#programmingLanguage')?.text.trim() ?? '';
+          var programmingLanguageColor =
+              programmingLanguageColors[programmingLanguage];
           var totalStars = int.parse(item
                   .querySelector('#stargazersCount')
                   ?.text
@@ -141,6 +143,7 @@ class GithubTrendScraper {
             repoName: repoName,
             description: description,
             programmingLanguage: programmingLanguage,
+            programmingLanguageColor: programmingLanguageColor,
             totalStars: totalStars,
             starsSince: starsSince,
             totalForks: totalForks,

@@ -5,6 +5,7 @@ export 'index.dart';
 export 'model.developer.dart';
 export 'model.repository.dart';
 export 'programming_languages.dart';
+export 'programming_language_colors.dart';
 export 'request.dart';
 export 'scraper.dart';
 export 'spoken_languages.dart';
