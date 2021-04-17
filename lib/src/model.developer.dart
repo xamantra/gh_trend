@@ -45,7 +45,8 @@ class GithubDeveloperItem extends Equatable {
   String toRawJson() => json.encode(toJson());
 
   /// The package offers a JSON utility for all model classes.
-  factory GithubDeveloperItem.fromRawJson(String source) => GithubDeveloperItem.fromJson(json.decode(source));
+  factory GithubDeveloperItem.fromRawJson(String source) =>
+      GithubDeveloperItem.fromJson(json.decode(source));
 
   /// This is for equatable integration.
   @override

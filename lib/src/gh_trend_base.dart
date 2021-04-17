@@ -6,9 +6,12 @@ const _scraper = GithubTrendScraper(
   descriptionSelector: 'article> p',
   programmingLanguageSelector: '<span itemprop="programmingLanguage">',
   totalStarsSelector: 'article> div> a:nth-child(2)',
-  starsSinceSelector: 'article> div.f6.color-text-secondary.mt-2> span.d-inline-block.float-sm-right',
-  totalForksSelector: 'article> div.f6.color-text-secondary.mt-2> a:nth-child(3)',
-  topContributorsSelector: 'article> div.f6.color-text-secondary.mt-2> span:nth-child(4)',
+  starsSinceSelector:
+      'article> div.f6.color-text-secondary.mt-2> span.d-inline-block.float-sm-right',
+  totalForksSelector:
+      'article> div.f6.color-text-secondary.mt-2> a:nth-child(3)',
+  topContributorsSelector:
+      'article> div.f6.color-text-secondary.mt-2> span:nth-child(4)',
   topContributorItemSelector: 'span> a> img',
   topContributorItemAttr: 'src',
   devItemSelector: 'div>div>div>article.Box-row',
@@ -16,7 +19,8 @@ const _scraper = GithubTrendScraper(
   devNameSelector: 'div > div > div:nth-child(1) > h1 > a',
   devUsernameSelector: 'div > div > div:nth-child(1) > p > a',
   devPopularRepoNameSelector: 'div > div > div > div > article > h1 > a',
-  devPopularRepoDescriptionSelector: '<div class="f6 color-text-secondary mt-1">',
+  devPopularRepoDescriptionSelector:
+      '<div class="f6 color-text-secondary mt-1">',
 );
 
 /// Load trending repositories from GitHub.

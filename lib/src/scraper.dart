@@ -76,14 +76,17 @@ class GithubTrendScraper {
       );
 
       // for some reason, the `html` package can't scrape the programming language without doing this
-      var rawHtml = response.body.replaceAll(programmingLanguageSelector, '<span id="programmingLanguage">');
+      var rawHtml = response.body.replaceAll(
+          programmingLanguageSelector, '<span id="programmingLanguage">');
       // but I think it has something to do with the "level 4" limitation of the package.
 
       var html = parse(rawHtml);
       var htmlItems = html.querySelectorAll(repoItemSelector);
       for (var htmlItem in htmlItems) {
         try {
-          var name = htmlItem.querySelector(nameSelector)?.text.trim().split('/') ?? [];
+          var name =
+              htmlItem.querySelector(nameSelector)?.text.trim().split('/') ??
+                  [];
           var owner = '';
           var repoName = '';
           if (name.isNotEmpty) {
@@ -93,21 +96,41 @@ class GithubTrendScraper {
 
           // another issue and solution for level 4 selectors.
           var from = 'href="/$owner/$repoName/stargazers"';
-          var rawItem = htmlItem.outerHtml.replaceAll(from, '$from id="stargazersCount" ');
+          var rawItem = htmlItem.outerHtml
+              .replaceAll(from, '$from id="stargazersCount" ');
           var item = parse(rawItem);
           // manipulate to make it easy to select the element and re-parse.
 
-          var description = item.querySelector(descriptionSelector)?.text.trim() ?? '';
-          var programmingLanguage = item.querySelector('#programmingLanguage')?.text.trim() ?? '';
-          var totalStars = int.parse(item.querySelector('#stargazersCount')?.text.trim().replaceAll(',', '') ?? '0');
-          var starsSince = item.querySelector(starsSinceSelector)?.text.trim().replaceAll(',', '') ?? '';
-          var totalForks = int.parse(item.querySelector(totalForksSelector)?.text.trim().replaceAll(',', '') ?? '0');
+          var description =
+              item.querySelector(descriptionSelector)?.text.trim() ?? '';
+          var programmingLanguage =
+              item.querySelector('#programmingLanguage')?.text.trim() ?? '';
+          var totalStars = int.parse(item
+                  .querySelector('#stargazersCount')
+                  ?.text
+                  .trim()
+                  .replaceAll(',', '') ??
+              '0');
+          var starsSince = item
+                  .querySelector(starsSinceSelector)
+                  ?.text
+                  .trim()
+                  .replaceAll(',', '') ??
+              '';
+          var totalForks = int.parse(item
+                  .querySelector(totalForksSelector)
+                  ?.text
+                  .trim()
+                  .replaceAll(',', '') ??
+              '0');
           var topContributors = <GithubUserItem>[];
-          var topConributorItems = item.querySelectorAll(topContributorItemSelector);
+          var topConributorItems =
+              item.querySelectorAll(topContributorItemSelector);
           for (var contribItem in topConributorItems) {
             try {
               var avatar = contribItem.attributes[topContributorItemAttr] ?? '';
-              var name = (contribItem.attributes['alt'] ?? '').replaceAll('@', '');
+              var name =
+                  (contribItem.attributes['alt'] ?? '').replaceAll('@', '');
               topContributors.add(GithubUserItem(name: name, avatar: avatar));
             } catch (e) {
               print(['repo (var contribItem in topConributorItems)', e]);
@@ -157,17 +180,24 @@ class GithubTrendScraper {
         headers: headers,
       );
 
-      var rawHtml = response.body.replaceAll(devPopularRepoDescriptionSelector, '<div id="repoDescription">');
+      var rawHtml = response.body.replaceAll(
+          devPopularRepoDescriptionSelector, '<div id="repoDescription">');
 
       var html = parse(rawHtml);
       var htmlItems = html.querySelectorAll(devItemSelector);
       for (var htmlItem in htmlItems) {
         try {
-          var avatar = htmlItem.querySelector(devAvatarSelector)?.attributes['src'] ?? '';
+          var avatar =
+              htmlItem.querySelector(devAvatarSelector)?.attributes['src'] ??
+                  '';
           var name = htmlItem.querySelector(devNameSelector)?.text.trim() ?? '';
-          var username = htmlItem.querySelector(devUsernameSelector)?.text.trim() ?? '';
-          var popularRepoName = htmlItem.querySelector(devPopularRepoNameSelector)?.text.trim() ?? '';
-          var popularRepoDescription = htmlItem.querySelector('#repoDescription')?.text.trim() ?? '';
+          var username =
+              htmlItem.querySelector(devUsernameSelector)?.text.trim() ?? '';
+          var popularRepoName =
+              htmlItem.querySelector(devPopularRepoNameSelector)?.text.trim() ??
+                  '';
+          var popularRepoDescription =
+              htmlItem.querySelector('#repoDescription')?.text.trim() ?? '';
           result.add(GithubDeveloperItem(
             avatar: avatar,
             name: name,
@@ -210,19 +240,25 @@ class GithubTrendScraper {
       repoItemSelector: repoItemSelector ?? this.repoItemSelector,
       nameSelector: nameSelector ?? this.nameSelector,
       descriptionSelector: descriptionSelector ?? this.descriptionSelector,
-      programmingLanguageSelector: programmingLanguageSelector ?? this.programmingLanguageSelector,
+      programmingLanguageSelector:
+          programmingLanguageSelector ?? this.programmingLanguageSelector,
       totalStarsSelector: totalStarsSelector ?? this.totalStarsSelector,
       starsSinceSelector: starsSinceSelector ?? this.starsSinceSelector,
       totalForksSelector: totalForksSelector ?? this.totalForksSelector,
-      topContributorsSelector: topContributorsSelector ?? this.topContributorsSelector,
-      topContributorItemSelector: topContributorItemSelector ?? this.topContributorItemSelector,
-      topContributorItemAttr: topContributorItemAttr ?? this.topContributorItemAttr,
+      topContributorsSelector:
+          topContributorsSelector ?? this.topContributorsSelector,
+      topContributorItemSelector:
+          topContributorItemSelector ?? this.topContributorItemSelector,
+      topContributorItemAttr:
+          topContributorItemAttr ?? this.topContributorItemAttr,
       devItemSelector: devItemSelector ?? this.devItemSelector,
       devAvatarSelector: devAvatarSelector ?? this.devAvatarSelector,
       devNameSelector: devNameSelector ?? this.devNameSelector,
       devUsernameSelector: devUsernameSelector ?? this.devUsernameSelector,
-      devPopularRepoNameSelector: devPopularRepoNameSelector ?? this.devPopularRepoNameSelector,
-      devPopularRepoDescriptionSelector: devPopularRepoDescriptionSelector ?? this.devPopularRepoDescriptionSelector,
+      devPopularRepoNameSelector:
+          devPopularRepoNameSelector ?? this.devPopularRepoNameSelector,
+      devPopularRepoDescriptionSelector: devPopularRepoDescriptionSelector ??
+          this.devPopularRepoDescriptionSelector,
     );
   }
 }
