@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: google/dart:2.12.0
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Packages
+      run: pub get
+    - name: Install coverage
+      run: pub global activate coverage
+    - name: Run tests
+      run: pub run test --coverage="coverage"
+    - name: Format coverage
+      run: pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
+    - name: Code Coverage -> Upload
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
