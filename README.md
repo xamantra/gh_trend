@@ -46,7 +46,7 @@ The `ghTrendingDevelopers()` method will return a list of `GithubDeveloperItem`.
 
 It also provides optional parameters like:
 ```dart
-var result = await ghTrendingRepositories(
+var result = await ghTrendingDevelopers(
   programmingLanguage: 'javascript',
   dateRange: GhTrendDateRange.thisWeek, // or `today` or `thisMonth`.
 );
