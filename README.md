@@ -5,6 +5,18 @@
 <strong>GitHub trending scraper for dart and flutter.</strong>
 </p>
 
+<p align="center">
+<a href="https://pub.dev/packages/gh_trend">
+  <img alt="Pub Version" src="https://img.shields.io/pub/v/gh_trend">
+</a>
+<a href="https://codecov.io/gh/xamantra/gh_trend">
+  <img src="https://codecov.io/gh/xamantra/gh_trend/branch/master/graph/badge.svg" />
+</a>
+<a href="https://github.com/xamantra/gh_trend/actions/workflows/CI.yaml">
+  <img src="https://github.com/xamantra/gh_trend/actions/workflows/CI.yaml/badge.svg" />
+</a>
+</p>
+
 ---
 
 ## Trending repositories
