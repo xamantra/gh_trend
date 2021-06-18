@@ -1,4 +1,4 @@
-/// GitHub trending scraper for dart and flutter.
+/// GitHub trending (developers & repositories) scraper for dart and flutter.
 library gh_trend;
 
 export 'src/index.dart'

@@ -1,5 +1,5 @@
 name: gh_trend
-description: GitHub trending scraper for dart and flutter.
+description: GitHub trending (developers & repositories) scraper for dart and flutter.
 version: 1.0.3
 homepage: https://github.com/xamantra/gh_trend
 
