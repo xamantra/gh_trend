@@ -96,8 +96,11 @@ class GithubTrendScraper {
 
           // another issue and solution for level 4 selectors.
           var from = 'href="/$owner/$repoName/stargazers"';
+          var fromMembers =
+              'href="/$owner/$repoName/network/members.$repoName"';
           var rawItem = htmlItem.outerHtml
-              .replaceAll(from, '$from id="stargazersCount" ');
+              .replaceAll(from, '$from id="stargazersCount" ')
+              .replaceAll(fromMembers, '$fromMembers id="forkCount" ');
           var item = parse(rawItem);
           // manipulate to make it easy to select the element and re-parse.
 
@@ -119,8 +122,9 @@ class GithubTrendScraper {
                   .trim()
                   .replaceAll(',', '') ??
               '';
+
           var totalForks = int.parse(item
-                  .querySelector(totalForksSelector)
+                  .querySelector('#forkCount')
                   ?.text
                   .trim()
                   .replaceAll(',', '') ??
