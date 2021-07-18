@@ -34,12 +34,14 @@ const _scraper = GithubTrendScraper(
 Future<List<GithubRepoItem>> ghTrendingRepositories({
   String spokenLanguageCode = '',
   String programmingLanguage = '',
+  String proxy = '',
   GhTrendDateRange dateRange = GhTrendDateRange.today,
   Map<String, String> headers = const {},
 }) async {
   return _scraper.ghTrendingRepositories(
     spokenLanguageCode: spokenLanguageCode,
     programmingLanguage: programmingLanguage,
+    proxy: proxy,
     dateRange: dateRange,
     headers: headers,
   );
@@ -53,11 +55,13 @@ Future<List<GithubRepoItem>> ghTrendingRepositories({
 /// `dateRange` - use the **GhTrendDateRange** enum to access all possible date range. Call the provided method **ghDateRangeLabel(...)** for displaying the value to the UI.
 Future<List<GithubDeveloperItem>> ghTrendingDevelopers({
   String programmingLanguage = '',
+  String proxy = '',
   GhTrendDateRange dateRange = GhTrendDateRange.today,
   Map<String, String> headers = const {},
 }) async {
   return _scraper.copyWith(base: '/developers').ghTrendingDevelopers(
         programmingLanguage: programmingLanguage,
+        proxy: proxy,
         dateRange: dateRange,
         headers: headers,
       );

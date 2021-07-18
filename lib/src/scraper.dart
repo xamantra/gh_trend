@@ -59,6 +59,7 @@ class GithubTrendScraper {
   Future<List<GithubRepoItem>> ghTrendingRepositories({
     String spokenLanguageCode = '',
     String programmingLanguage = '',
+    String proxy = '',
     GhTrendDateRange dateRange = GhTrendDateRange.today,
     Map<String, String> headers = const {},
   }) async {
@@ -72,6 +73,7 @@ class GithubTrendScraper {
           programmingLanguage: programmingLanguage,
           dateRange: dateRange,
         ),
+        proxy: proxy,
         headers: headers,
       );
 
@@ -172,6 +174,7 @@ class GithubTrendScraper {
   /// `dateRange` - use the **GhTrendDateRange** enum to access all possible date range. Call the provided method **ghDateRangeLabel(...)** for displaying the value to the UI.
   Future<List<GithubDeveloperItem>> ghTrendingDevelopers({
     String programmingLanguage = '',
+    String proxy = '',
     GhTrendDateRange dateRange = GhTrendDateRange.today,
     Map<String, String> headers = const {},
   }) async {
@@ -184,6 +187,7 @@ class GithubTrendScraper {
           programmingLanguage: programmingLanguage,
           dateRange: dateRange,
         ),
+        proxy: proxy,
         headers: headers,
       );
 
