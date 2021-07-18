@@ -6,9 +6,9 @@ Future<http.Response> request<T>(
   String proxy = '',
   Map<String, String> headers = const {},
 }) async {
-  var url = '$githubBase$path';
+  var url = '$proxy$githubBase$path';
   print('$logHeader [GET] -> "$url"');
-  var response = await http.get(Uri.parse(proxy + url), headers: headers);
+  var response = await http.get(Uri.parse(url), headers: headers);
   if (response.statusCode != 200) {
     print('$logHeader [GET ${response.statusCode}] -> "$url"');
   }
