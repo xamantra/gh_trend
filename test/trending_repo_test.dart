@@ -73,7 +73,7 @@ void _checkItem(
     }
     expect(item.starsSince.isNotEmpty, true);
     expect(item.starsSince.contains(dateRangeMustBe), true);
-    expect(item.topContributors.isNotEmpty, true);
+    // expect(item.topContributors.isNotEmpty, true); // https://github.com/xamantra/gh_trend/pull/3#issuecomment-882156026
     for (var user in item.topContributors) {
       expect(user.avatar.isNotEmpty, true);
       expect(user.name.isNotEmpty, true);
